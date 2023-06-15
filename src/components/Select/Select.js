@@ -10,9 +10,9 @@ const Select = ({ label, value, onChange, children }) => {
 
   return (
       <Wrapper>
-      <SelectWrapper value={value} onChange={onChange}>{children}</SelectWrapper>
+      <NativeSelect value={value} onChange={onChange}>{children}</NativeSelect>
       <RealSelect role="select">{displayedValue}</RealSelect>
-      <IconWrapper id="chevron-down"/>
+      <IconWrapper style={{"--size": 24 + "px"}}><Icon id="chevron-down" size={24} strokeWidth={1}/></IconWrapper>
       </Wrapper>
   );
 };
@@ -27,50 +27,40 @@ const Wrapper = styled.div`
     }
 `
 
-const IconWrapper = styled(Icon)`
+const IconWrapper = styled.div`
   pointer-events: none;
-  border-radius: 0 8px 8px 0;
-  border-left: 0;
   position: absolute;
-  right: 0;
+  right: 10px;
   top: 0;
-  padding: 9px 16px;
-  & > svg {  color: inherit};
+  bottom: 0;
+  margin: auto;
+  height: var(--size);
+  width: var(--size);
+  & svg {  color: inherit};
 `
 
-const SelectWrapper = styled.select`
-  position: absolute;
-  left: 0;
-  opacity: 0;
-  /* for Firefox */
-  -moz-appearance: none;
-  /* for Chrome */
-  -webkit-appearance: none;
-
-/* For IE10 */
-::-ms-expand {
-  display: none;
-}
-  padding: 12px 52px 12px 16px;
-  // padding: 12px 16px;
-  display: inline-block;
-  border-radius: 8px;
-  background: ${COLORS.transparentGray15};
-  color: inherit;
+const NativeSelect = styled.select`
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
 `
 
 const RealSelect = styled.div`
-  pointer-events: none;
-  white-space: nowrap;
-  padding: 12px 52px 12px 16px;
-  display: inline-block;
-  border-radius: 8px;
-  background: ${COLORS.transparentGray15};
-  color: inherit;
-  ${SelectWrapper}:focus + &
-  {
-  outline: solid 2px ${COLORS.primary};
-  }
+    pointer-events: none;
+    white-space: nowrap;
+    font-size: ${16 / 16}rem;
+    padding: 12px 52px 12px 16px;
+    display: inline-block;
+    border-radius: 8px;
+    background: ${COLORS.transparentGray15};
+    color: inherit;
+    ${NativeSelect}:focus + &
+    {
+    outline: solid 2px ${COLORS.primary};
+    }
 `
 
 
